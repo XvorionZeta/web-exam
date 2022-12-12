@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('soal_details', function (Blueprint $table) {
+        Schema::create('test_answer', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->string('question');
-            $table->integer('is_answered');
+            $table->unsignedBigInteger('question_id');
+            $table->string('answer');
+            $table->binary('is_right');
             $table->timestamps();
 
-            $table->foreign('category_id')
+            $table->foreign('question_id')
                   ->references('id')
-                  ->on('soal_category');
+                  ->on('test_questions');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('soal_details');
+        Schema::dropIfExists('test_answer');
     }
 };

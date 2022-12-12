@@ -13,20 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('soal_grade', function (Blueprint $table) {
+        Schema::create('user_tests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('soal_category');
-            $table->float('grade')->default(0);
-            $table->time('remaining_time');
+            $table->unsignedBigInteger('test_id');
+            $table->time('end_time');
+            $table->time('grade');
             $table->timestamps();
+
 
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users');
-            $table->foreign('soal_category')
+
+            $table->foreign('test_id')
                   ->references('id')
-                  ->on('soal_category');
+                  ->on('tests');
         });
     }
 
@@ -37,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('soal_grade');
+        Schema::dropIfExists('user_tests');
     }
 };

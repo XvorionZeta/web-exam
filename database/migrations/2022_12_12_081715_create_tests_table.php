@@ -13,15 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('soal_choices', function (Blueprint $table) {
+        Schema::create('tests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('soal_id');
-            $table->binary('is_right');
+            $table->unsignedBigInteger('creator_id');
+            $table->string('title');
+            $table->unsignedBigInteger('category')->nullable();
+            $table->time('duration');
+            $table->float('pass_grade');
+            $table->integer('total_questions');
             $table->timestamps();
 
-            $table->foreign('soal_id')
+            $table->foreign('creator_id')
                   ->references('id')
-                  ->on('soal_details');
+                  ->on('users');
         });
     }
 
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('soal_choices');
+        Schema::dropIfExists('tests');
     }
 };
