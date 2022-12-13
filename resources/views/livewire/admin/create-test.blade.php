@@ -8,7 +8,8 @@
             {{-- Body --}}
             <div class="card-body">
                 <div class="p-4">
-                    <form>
+                    <form wire:submit.prevent='saveTest'>
+                        @csrf
                         {{-- Judul --}}
                         <div class="form-group">
                             <label for="judulTest">Judul Test</label>
@@ -44,7 +45,7 @@
                                 wire:model='passGrade'>
                         </div>
                         {{-- Next Button --}}
-                        <button class="btn btn-icon btn-3 btn-info float-end" type="button" wire:click='next'>
+                        <button class="btn btn-icon btn-3 btn-info float-end" type="submit">
                             <span class="btn-inner--text px-2">Next</span>
                             <span class="btn-inner--icon mt-2"><i class="ni ni-curved-next"></i></span>
                         </button>

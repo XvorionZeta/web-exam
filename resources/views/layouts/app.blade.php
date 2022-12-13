@@ -19,6 +19,7 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/9be33c528d.js" crossorigin="anonymous"></script>
     @livewireStyles
 </head>
 

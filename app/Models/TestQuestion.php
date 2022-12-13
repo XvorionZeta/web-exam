@@ -9,4 +9,9 @@ class TestQuestion extends Model
 {
     use HasFactory;
     protected $table = 'test_questions';
+    protected $guarded = [
+        'id',
+        'updated_at',
+        'created_at',
+    ];
 }

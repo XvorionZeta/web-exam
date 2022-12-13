@@ -24,10 +24,17 @@ use App\Http\Livewire\CreateSoal;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[LoginController::class, 'show'])->middleware('guest')->name('login');
 
+
+Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
+Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
+Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest')->name('reset-password');
+Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
+Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
+Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 
 Route::group(['middleware' => 'auth'],function () {
     Route::get('dashboard',[HomeController::class, 'index'])->name('home');
@@ -39,14 +46,6 @@ Route::group(['middleware' => 'auth'],function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 // Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
-// 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
-// 	Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
-// 	Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
-// 	Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
-// 	Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest')->name('reset-password');
-// 	Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
-// 	Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
-// 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 // 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 // Route::group(['middleware' => 'auth'], function () {
 // 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');

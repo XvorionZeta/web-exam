@@ -9,4 +9,9 @@ class UserTest extends Model
 {
     use HasFactory;
     protected $table = 'user_answer';
+    protected $guarded = [
+        'id',
+        'updated_at',
+        'created_at',
+    ];
 }
