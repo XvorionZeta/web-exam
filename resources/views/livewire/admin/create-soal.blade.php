@@ -5,7 +5,7 @@
             <div class="card">
                 {{-- Header --}}
                 <div class="card-header">
-                    <h3>Judul Test</h3>
+                    <h3>{{ $title }}</h3>
                 </div>
                 {{-- Body --}}
                 <div class="card-body">

@@ -11,7 +11,7 @@ use App\Models\SoalCategory;
 
 class CreateTest extends Component
 {
-    public $judul,$jam,$menit,$detik,$passGrade;
+    public $judul,$jam,$menit,$detik,$passGrade,$sumQuestion;
 
     public function render()
     {
@@ -24,12 +24,20 @@ class CreateTest extends Component
      */
     public function saveTest()
     {
-        Carbon::createFromFormat('H',$this->jam)->format('H:i:s');
-        Test::updateOrCreate(
-            ['creator_id' => Auth::user()->id],
-            [
+        $hour = Carbon::createFromFormat('H',$this->jam)->format('H:i:s');
+        $saveTest = Test::updateOrCreate(
+                    [
+                        'creator_id' => Auth::user()->id,
+                        'title' => $this->judul,
+                    ],
+                    [
+                        'duration'   => $hour,
+                        'pass_grade' => $this->passGrade,
+                        'total_questions' => $this->sumQuestion,
+                    ]);
 
-            ]
-            );
+        $this->emit('title_id',$saveTest->id);
+        return redirect()->route('create-soal',['title_id'=>$saveTest->id]);
+
     }
 }

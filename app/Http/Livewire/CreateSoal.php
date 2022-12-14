@@ -11,11 +11,14 @@ class CreateSoal extends Component
 {
     public $answers = [''];
     public $saved = FALSE;
-    public $question,$isRight;
+    public $question,$isRight,$title;
+    protected $listeners = ['title_id'];
 
     public function render()
     {
-        return view('livewire.admin.create-soal');
+        return view('livewire.admin.create-soal',[
+            'title' => $this->title,
+        ]);
     }
 
     public function addAnswer()
@@ -33,5 +36,9 @@ class CreateSoal extends Component
     {
         $question = TestQuestion::updateOrcreate();
         $answers  = TestAnswer::updateOrCreate();
+    }
+    public function title_id($title_id)
+    {
+        $this->title = $title_id;
     }
 }

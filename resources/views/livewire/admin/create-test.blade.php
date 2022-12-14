@@ -22,21 +22,27 @@
                             <div class="col col-4">
                                 <div class="form-group">
                                     <input type="number" min="0" class="form-control" id="jam"
-                                        wire:model='jam' placeholder="Jam" required>
+                                        wire:model='jam' placeholder="Jam">
                                 </div>
                             </div>
                             <div class="col col-4">
                                 <div class="form-group">
                                     <input type="number" min="0" class="form-control" id="menit"
-                                        wire:model='menit' placeholder="Menit" required>
+                                        wire:model='menit' placeholder="Menit">
                                 </div>
                             </div>
                             <div class="col col-4">
                                 <div class="form-group">
                                     <input type="number" min="0" class="form-control" id="detik"
-                                        wire:model='detik' placeholder="Detik" required>
+                                        wire:model='detik' placeholder="Detik">
                                 </div>
                             </div>
+                        </div>
+                        {{-- Passing Grade --}}
+                        <div class="form-group">
+                            <label for="sumQuestion">Jumlah Pertanyaan</label>
+                            <input type="number" min="0" class="form-control" id="sumQuestion"
+                                wire:model='sumQuestion'>
                         </div>
                         {{-- Passing Grade --}}
                         <div class="form-group">
