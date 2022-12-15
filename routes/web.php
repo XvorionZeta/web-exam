@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('profile', [UserProfileController::class, 'show'])->name('profile');
 
     Route::get('create-test', CreateTest::class)->name('create-test');
-    Route::get('create-soal', CreateSoal::class)->name('create-soal');
+    Route::get('create-soal/{title_id}', CreateSoal::class)->name('create-soal');
 
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });

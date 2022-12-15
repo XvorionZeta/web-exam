@@ -1,15 +1,14 @@
-@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col col-md-6 mx-auto">
             <div class="card">
                 {{-- Header --}}
                 <div class="card-header">
-                    <h3>{{ $title }}</h3>
+                    <h3 class="uppercase">Tambah Soal Test {{ $title }}</h3>
                 </div>
                 {{-- Body --}}
                 <div class="card-body">
-                    <div class="row p-4">
+                    <div class="row">
                         <form wire:submit.prevent='saveQuestion'>
                             @csrf
                             {{-- Judul --}}
@@ -22,7 +21,8 @@
                             <div class="row mb-4">
                                 <label>Jawaban</label>
                                 @foreach ($answers as $index => $answer)
-                                <div class="flex">
+                                <div class="flex pt-4">
+                                    <label>No.{{ $index+1 }}</label>
                                     <div class="input-group mb-2">
                                         <input type="text" min="0" class="form-control"
                                             wire:model='answers.{{ $index }}'>
@@ -32,7 +32,7 @@
                                         <button class="btn btn-success mb-0" type="button" id="add"
                                             wire:click.prevent='addAnswer'><i class="fa-regular fa-plus"></i></button>
                                     </div>
-                                    <div class="form-check">
+                                    <div class="form-check border-bottom pb-2">
                                         <input class="form-check-input" type="checkbox" id="isRight"
                                             wire:model='isRight.{{ $index }}'>
                                         <label class="custom-control-label" for="isRight">Jawaban Yang Benar ?</label>
