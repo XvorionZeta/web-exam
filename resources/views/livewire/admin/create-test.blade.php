@@ -23,19 +23,19 @@
                                     <label>Durasi</label>
                                     <div class="col col-4">
                                         <div class="form-group">
-                                            <input type="number" min="0" class="form-control" id="jam" wire:model='jam'
+                                            <input type="number" min="0" class="form-control" id="jam" wire:model='jam' required
                                                 placeholder="Jam">
                                         </div>
                                     </div>
                                     <div class="col col-4">
                                         <div class="form-group">
-                                            <input type="number" min="0" class="form-control" id="menit"
+                                            <input type="number" min="0" max="60" class="form-control" id="menit" required
                                                 wire:model='menit' placeholder="Menit">
                                         </div>
                                     </div>
                                     <div class="col col-4">
                                         <div class="form-group">
-                                            <input type="number" min="0" class="form-control" id="detik"
+                                            <input type="number" min="0" max="60" class="form-control" id="detik" required
                                                 wire:model='detik' placeholder="Detik">
                                         </div>
                                     </div>
@@ -43,13 +43,13 @@
                                 {{-- Passing Grade --}}
                                 <div class="form-group">
                                     <label for="sumQuestion">Jumlah Pertanyaan</label>
-                                    <input type="number" min="0" class="form-control" id="sumQuestion"
+                                    <input type="number" min="0" class="form-control" id="sumQuestion" required
                                         wire:model='sumQuestion'>
                                 </div>
                                 {{-- Passing Grade --}}
                                 <div class="form-group">
                                     <label for="passGrade">Passing Grade</label>
-                                    <input type="number" min="0" class="form-control" id="passGrade"
+                                    <input type="number" min="0" class="form-control" id="passGrade" required
                                         wire:model='passGrade'>
                                 </div>
                                 {{-- Next Button --}}

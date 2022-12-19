@@ -10,6 +10,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 
+use App\Http\Livewire\ListTest;
 use App\Http\Livewire\CreateTest;
 use App\Http\Livewire\CreateSoal;
 
@@ -36,14 +37,27 @@ Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('gues
 Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 
+// Main Now
 Route::group(['middleware' => 'auth'],function () {
-    Route::get('dashboard',[HomeController::class, 'index'])->name('home');
-    Route::get('profile', [UserProfileController::class, 'show'])->name('profile');
+    Route::get('dashboard',[HomeController::class, 'index'])
+        ->name('home');
 
-    Route::get('create-test', CreateTest::class)->name('create-test');
-    Route::get('create-soal/{title_id}', CreateSoal::class)->name('create-soal');
+    Route::get('profile',  [UserProfileController::class, 'show'])
+        ->name('profile');
 
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    // List Test
+        Route::get('list-test',ListTest::class)
+            ->name('list-test');
+
+    // Buat test dan soal
+        Route::get('create-test', CreateTest::class)
+            ->name('create-test');
+
+        Route::get('create-soal/{title_id}', CreateSoal::class)
+            ->name('create-soal');
+
+    Route::post('logout', [LoginController::class, 'logout'])
+        ->name('logout');
 });
 // Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 // 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');

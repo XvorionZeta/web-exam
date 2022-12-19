@@ -34,9 +34,18 @@
                 <a class="nav-link {{ Route::currentRouteName() == 'create-test' ? 'active bg-gradient-primary text-white' : '' }}" href="{{ route('create-test') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-sm opacity-10  {{ Route::currentRouteName() == 'create-test' ? 'text-white' : 'text-dark' }} "></i>
+                        <i class="ni ni-tag text-sm opacity-10  {{ Route::currentRouteName() == 'create-test' ? 'text-white' : 'text-dark' }} "></i>
                     </div>
                     <span class="nav-link-text ms-1">Create Test</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() == 'list-test' ? 'active bg-gradient-primary text-white' : '' }}" href="{{ route('list-test') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-books text-sm opacity-10  {{ Route::currentRouteName() == 'list-test' ? 'text-white' : 'text-dark' }} "></i>
+                    </div>
+                    <span class="nav-link-text ms-1">List Test</span>
                 </a>
             </li>
         </ul>

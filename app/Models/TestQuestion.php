@@ -14,4 +14,9 @@ class TestQuestion extends Model
         'updated_at',
         'created_at',
     ];
+
+    public function answers()
+    {
+        return $this->hasMany(TestAnswer::class);
+    }
 }

@@ -10,12 +10,14 @@ use App\Models\TestAnswer;
 class CreateSoal extends Component
 {
     public $answers = [''];
+    public $isRight = [false];
     public $saved = FALSE;
-    public $question,$questionId,$isRight,$title,$testId;
+    public $question,$questionId,$title,$testId;
 
     public function mount($title_id)
     {
-        $this->testId = $title_id;
+        $this->testId  = $title_id;
+        // $this->isRight = false;
         $this->title  = Test::where('id',$title_id)->value('title');
     }
 
@@ -27,6 +29,8 @@ class CreateSoal extends Component
     public function addAnswer()
     {
         $this->answers[] = '';
+        $this->isRight[] = false;
+        $this->saved = false;
     }
 
     public function removeAnswer($index)
@@ -44,15 +48,21 @@ class CreateSoal extends Component
             ]
         );
         $this->questionId = $question->id;
-        $answers  = TestAnswer::create();
-
-        foreach ($this->answers as $answer)
+        // dd();
+        foreach (array_combine($this->answers,$this->isRight) as $answer => $isRight)
         {
-            $answers->answer()->create([
-                'question_id' => $this->questionId,
-                'answer' => $answer
-            ]);
+            TestAnswer::updateOrCreate(
+                [
+                    'question_id' => $this->questionId,
+                    'answer' => $answer
+                ],
+                [
+                    'is_right'    => $isRight,
+                ]
+            );
         }
+        $this->reset('question','answers','isRight');
+        $this->saved = TRUE;
     }
 
     // public function title_id($title_id)

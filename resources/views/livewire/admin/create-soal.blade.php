@@ -9,6 +9,11 @@
                 {{-- Body --}}
                 <div class="card-body">
                     <div class="row">
+                        @if ($saved)
+                            <div class="bg-success rounded text-center py-1 mb-4 shadow-md">
+                                <h4 class="text-white">Soal Berhasil Di Simpan</h4>
+                            </div>
+                        @endif
                         <form wire:submit.prevent='saveQuestion'>
                             @csrf
                             {{-- Judul --}}
@@ -33,9 +38,9 @@
                                             wire:click.prevent='addAnswer'><i class="fa-regular fa-plus"></i></button>
                                     </div>
                                     <div class="form-check border-bottom pb-2">
-                                        <input class="form-check-input" type="checkbox" id="isRight"
+                                        <input class="form-check-input" type="checkbox" id="isRight.{{ $index }}"
                                             wire:model='isRight.{{ $index }}'>
-                                        <label class="custom-control-label" for="isRight">Jawaban Yang Benar ?</label>
+                                        <label class="custom-control-label" for="isRight.{{ $index }}">Jawaban Yang Benar ?</label>
                                     </div>
                                 </div>
                                 @endforeach
