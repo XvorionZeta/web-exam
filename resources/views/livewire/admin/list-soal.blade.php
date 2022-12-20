@@ -5,32 +5,25 @@
             <div class="card">
                 <div class="table-responsive">
                     <table class="table align-items-center mb-0">
+                        <h4 class="px-4 py-2">Test {{ $title }}</h4>
                         <thead>
                             <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">No
                                 </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                    Judul Test</th>
+                                    Soal/Pertanyaan</th>
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Pass Grade
+                                    Jawaban
                                 </th>
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Durasi</th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Soal setiap test
-                                </th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Jumlah Soal
-                                </th>
+                                    Jawaban Benar</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $datas)
+                            @forelse ($data as $datas)
                             <tr>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $data->firstItem() + $loop->index }}</p>
@@ -38,29 +31,29 @@
                                 <td>
                                     <div class="d-flex px-2 py-1">
                                         <div class="d-flex flex-column justify-content-start">
-                                            <h6 class="mb-0 text-xs">{{ $datas->title }}</h6>
+                                            <h6 class="mb-0 text-xs">{{ $datas->question }}</h6>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ number_format($datas->pass_grade,2) }}</p>
-                                    {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
+                                <td>
+                                    <ol>
+                                        @foreach (App\Models\TestAnswer::where('question_id',$datas->id)->get() as $answer)
+                                            <li class="text-xs font-weight-bold mb-0 text-start">{{ $answer->answer }}</li>
+                                        @endforeach
+                                    </ol>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">{{ $datas->duration }}</span>
+                                    <ol>
+                                        @foreach (App\Models\TestAnswer::where('question_id',$datas->id)
+                                                                        ->where('is_right','=',1)
+                                                                        ->get()
+                                                                        as $rightAnswer)
+                                            <li class="text-xs font-weight-bold mb-0 text-start">{{ $rightAnswer->answer }}</li>
+                                        @endforeach
+                                    </ol>
                                 </td>
-                                <td class="align-middle text-center text-sm">
-                                    <p class="text-xs text-secondary mb-0 text-center">{{ $datas->total_questions }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">{{ $datas->total_questions }}</span>
-                                </td>
-                                <td class="d-flex flex-col gap-2 justify-content-center">
-                                    <button wire:click='listSoal({{ $datas->id }})' type="button" class="btn btn-info rounded py-1">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                        <span>Soal</span>
-                                    </button>
-                                    <button type="button" class="btn btn-success rounded py-1" wire:click='editTest({{ $datas->id }})'  data-bs-toggle="modal" data-bs-target="#modal-edit" >
+                                <td class="d-flex flex-col gap-2 justify-content-center align-content-center">
+                                    <button type="button" class="btn btn-success rounded py-1">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         <span>Edit</span>
                                     </button>
@@ -70,7 +63,13 @@
                                     </button>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="5" class="align-middle text-center">
+                                    <span>Data Tidak Di Temukan</span>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -81,10 +80,3 @@
         </div>
     </div>
 </div>
-@section('modal-body')
-test
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
-@endsection

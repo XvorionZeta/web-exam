@@ -15,9 +15,9 @@ class CreateTest extends Component
 
     public function mount()
     {
-        $this->jam = 0;
-        $this->menit = 0;
-        $this->detik = 0;
+        // $this->jam = 0;
+        // $this->menit = 0;
+        // $this->detik = 0;
     }
 
     public function render()

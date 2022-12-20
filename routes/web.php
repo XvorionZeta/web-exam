@@ -11,6 +11,7 @@ use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 
 use App\Http\Livewire\ListTest;
+use App\Http\Livewire\ListSoal;
 use App\Http\Livewire\CreateTest;
 use App\Http\Livewire\CreateSoal;
 
@@ -45,9 +46,12 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('profile',  [UserProfileController::class, 'show'])
         ->name('profile');
 
-    // List Test
+    // List Test & Soal
         Route::get('list-test',ListTest::class)
             ->name('list-test');
+
+        Route::get('list-soal/{test_id}',ListSoal::class)
+            ->name('list-soal');
 
     // Buat test dan soal
         Route::get('create-test', CreateTest::class)
