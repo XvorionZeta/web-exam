@@ -41,4 +41,9 @@ class ListSoal extends Component
                                 ->orderBy('updated_at')
                                 ->paginate('25');
     }
+
+    public function addSoal()
+    {
+        return redirect()->route('create-soal',['title_id'=>$this->testId]);
+    }
 }

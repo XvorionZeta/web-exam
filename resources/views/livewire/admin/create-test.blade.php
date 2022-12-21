@@ -23,7 +23,7 @@
                                     <label>Durasi</label>
                                     <div class="col col-4">
                                         <div class="form-group">
-                                            <input type="number" min="0" class="form-control" id="jam" wire:model='jam' required
+                                            <input type="number" min="0" max="24" class="form-control" id="jam" wire:model='jam' required
                                                 placeholder="Jam">
                                         </div>
                                     </div>

@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('test_id');
-            $table->time('end_time');
-            $table->time('grade');
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
+            $table->float('grade');
+            $table->integer('is_cleared')->nullable();
             $table->timestamps();
 
 

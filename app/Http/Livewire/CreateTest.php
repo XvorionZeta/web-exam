@@ -13,13 +13,6 @@ class CreateTest extends Component
 {
     public $judul,$jam,$menit,$detik,$passGrade,$sumQuestion;
 
-    public function mount()
-    {
-        // $this->jam = 0;
-        // $this->menit = 0;
-        // $this->detik = 0;
-    }
-
     public function render()
     {
         return view('livewire.admin.create-test');

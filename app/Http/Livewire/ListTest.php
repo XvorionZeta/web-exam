@@ -16,6 +16,9 @@ class ListTest extends Component
     protected $queryString = ['search'];
     public $search;
     public $title,$testId;
+    public $editContent;
+    public $deleted = FALSE;
+    public $judul,$jam,$menit,$detik,$passGrade,$sumQuestion;
     private $data;
 
     public function render()
@@ -40,10 +43,32 @@ class ListTest extends Component
         return redirect()->route('list-soal',['test_id'=>$idTest]);
     }
 
-    public function editTest($id)
+    public function assignTest($idTest)
     {
-        $this->testid = $id;
-        $this->title  = Test::where('id',$id)->value('title');
+        return redirect()->route('assign-test',['test_id'=>$idTest]);
     }
 
+    public function editTest($id)
+    {
+        $this->testId = $id;
+        $this->title  = Test::where('id',$id)->value('title');
+        $this->passGrade   = Test::where('id',$id)->value('pass_grade');
+        $this->sumQuestion = Test::where('id',$id)->value('total_questions');
+    }
+
+    public function update()
+    {
+        Test::where('id',$this->testId)
+            ->update([
+                'title' => $this->title,
+                'pass_grade' => $this->passGrade,
+                'total_questions' => $this->sumQuestion
+            ]);
+    }
+
+    public function delete($testId)
+    {
+        Test::where('id',$testId)->delete();
+        $this->deleted = true;
+    }
 }

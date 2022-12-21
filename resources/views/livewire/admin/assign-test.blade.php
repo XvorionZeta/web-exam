@@ -7,30 +7,30 @@
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
                             <div class="p-4 d-flex justify-content-between">
-                                <h4 class="font-weight-bold">Test {{ $title }}</h4>
-                                <button class="btn btn-success" type="button" wire:click.prevent='addSoal'>
+                                <h4 class="font-weight-bold">Assign Test {{ $title }}</h4>
+                                {{-- <button class="btn btn-success" type="button" wire:click.prevent='addSoal'>
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Tambah Soal</span>
-                                </button>
+                                </button> --}}
                             </div>
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">No
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Soal/Pertanyaan</th>
+                                        User</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        List Jawaban
+                                        Name
                                     </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Jawaban Benar</th>
+                                        Class</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $datas)
+                                {{-- @forelse ($data as $datas)
                                 <tr>
                                     <td class="align-top">
                                         <p class="text-xs font-weight-bold mb-0 text-center">{{ $data->firstItem() + $loop->index }}</p>
@@ -78,14 +78,14 @@
                                         <span>Data Tidak Di Temukan</span>
                                     </td>
                                 </tr>
-                                @endforelse
+                                @endforelse --}}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
-                {{ $data->links() }}
+                {{-- {{ $data->links() }} --}}
             </div>
         </div>
     </div>

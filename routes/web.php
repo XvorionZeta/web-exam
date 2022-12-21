@@ -12,6 +12,7 @@ use App\Http\Controllers\ChangePassword;
 
 use App\Http\Livewire\ListTest;
 use App\Http\Livewire\ListSoal;
+use App\Http\Livewire\AssignTest;
 use App\Http\Livewire\CreateTest;
 use App\Http\Livewire\CreateSoal;
 
@@ -49,14 +50,14 @@ Route::group(['middleware' => 'auth'],function () {
     // List Test & Soal
         Route::get('list-test',ListTest::class)
             ->name('list-test');
-
         Route::get('list-soal/{test_id}',ListSoal::class)
             ->name('list-soal');
+        Route::get('assign-test/{test_id}',AssignTest::class)
+            ->name('assign-test');
 
     // Buat test dan soal
         Route::get('create-test', CreateTest::class)
             ->name('create-test');
-
         Route::get('create-soal/{title_id}', CreateSoal::class)
             ->name('create-soal');
 
